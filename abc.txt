@@ -1,9 +1,6 @@
 from django.db import models
 import uuid
-
-# Create your models here.
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-
+from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin
 
 class NewUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -16,24 +13,29 @@ class NewUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_active', True)
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
 
         return self.create_user(email, password, **extra_fields)
 
-class NewUser(AbstractBaseUser, PermissionsMixin):
-    
+class NewUser(AbstractUser, PermissionsMixin):
     email = models.EmailField('email address', unique=True)
-    phone = models.IntegerField(blank = True, null = True)
+    phone = models.IntegerField(unique = True)
     user_uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
-    
-    
+
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=True)
-    
-    
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = NewUserManager()
-    
+
     def __str__(self):
         return self.email

@@ -7,7 +7,14 @@
 </head>
 <body>
     <h1>Wellcome to Accounts</h1>
-    
+
+    {% if user.is_authenticated %}
+        <a href="/admin/">Welcome, {{user.email}}</a>
+        <br>
+            <a href="/signout/" @click.prevent="logout">Logout</a>
+    {% endif %}
+
+    <br>
 
     <a class="" href="/signin/">SignIN</a>
     <a class="" href="/signup/">SignUP</a>

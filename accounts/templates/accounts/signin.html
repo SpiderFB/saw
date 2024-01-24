@@ -1,0 +1,29 @@
+{% extends 'accounts/accounts.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>LogIN</h1>
+    <form method="POST" action="">
+        
+        {% csrf_token %}
+        <i>Email</i>
+        <input type="text" id="email" name="email123" required> 
+        <br>
+        <i>Password</i>
+        <input type="text" id="password" name="password123" required >
+        <br>
+        <button type="submit">SignIN</button>
+        
+    </form>
+<body>
+<html>
+
+{% endblock %}

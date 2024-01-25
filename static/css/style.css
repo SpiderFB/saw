@@ -4,8 +4,8 @@
   margin: 0;
   padding: 0;
   font-family: 'Quicksand', sans-serif;
-  box-sizing: border-box;
-  background-color: aqua;
+  /* box-sizing: border-box; */
+  /* background-color: aqua; */
 }
 .banner {
     display: flex;

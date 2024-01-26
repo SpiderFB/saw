@@ -2,26 +2,31 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1>Product Details</h1>
-        <img src="{% get_media_prefix %}{{ single_product.product_image }}" alt="{{ single_product.product_name }}" height="200px" width="200px">
-        <h3>{{ single_product.product_name }} <h3>
-        <h4>Price: {{ single_product.product_price }} rs</h4>
-        <h4>Quantity: {{ single_product.product_quantity }}</h4>
-        <h4>Brand Name: {{ single_product.product_brand }}</h4>
-        <h4>Details: {{ single_product.product_description }}</h4>
-        <h4>Category: {{ single_product.product_category }}</h4>
-        <button>Add to Cart</button>
-        <button>Favourite</button>
-        {% if user.is_authenticated %}
-                    {% if perms.admin %}
-                        <button>Edit</button>
-                    {% endif %}
-                {% endif %}
+    <img src="{% get_media_prefix %}{{ single_product.product_image }}" alt="{{ single_product.product_name }}"
+        height="350px" width="350px">
+    <button>Add to Cart</button>
+    <button>Favourite</button>
+    {% if user.is_authenticated %}
+    {% if perms.admin %}
+    <button>Edit</button>
+    {% endif %}
+    {% endif %}
+    <h3>{{ single_product.product_name }} <h3>
+    <h4>Price: {{ single_product.product_price }} rs</h4>
+    <h4>Quantity: {{ single_product.product_quantity }}</h4>
+    <h4>Brand Name: {{ single_product.product_brand }}</h4>
+    <h4>Details: {{ single_product.product_description }}</h4>
+    <h4>Category: {{ single_product.product_category }}</h4>
+
 </body>
+
 </html>

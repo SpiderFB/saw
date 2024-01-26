@@ -1,4 +1,6 @@
+{% extends 'saw/base.html' %}
 {% load static %}
+{% block content %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +21,7 @@
 
     <div class="row"></div>
         {% for item in productdb_var %}
-            <div class="column">
+            <div class="item">
                 <a href="/productsdetail/{{ item.product_uuid }}/">
                 <img src="{% get_media_prefix %}{{ item.product_image }}" alt="{{ item.product_name }}" height="200px" width="200px">
                 <h3>{{ item.product_name }} <h3>
@@ -39,3 +41,4 @@
     <script src="{% static 'js/app.js' %}"></script>
 </body>
 </html>
+{% endblock %}

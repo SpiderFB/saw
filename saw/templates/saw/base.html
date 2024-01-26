@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+</head>
+
+<body>
+    <!-- <h1>Base of project</h1> -->
+
+    <div class="ecomnav">
+        <div class="nav-items">
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="/table/">Table data</a></li>
+                {% if user.is_authenticated %}
+                {% if perms.admin %}
+                <li><a href="/additem/">Add Items</a></li>
+                {% endif %}
+
+                {% endif %}
+                <!-- For url need to define in the urls.py -->
+                <ul>
+                    {% if user.is_authenticated %}
+                    {% if perms.admin %}
+                    <a href="/admin/"><h3>Hello Admin,</h3> <i>{{user.email}}</i></a>
+                    {% else %}
+                        <a href="#">Welcome, {{user.email}}</a>
+                    {% endif %}
+                    <br>
+                    <a href="/signout/" @click.prevent="logout">Signout</a>
+                    {% else %}
+                    <li><a href="/signin/">Signin</a></li>
+                    {% endif %}
+                    <li><a href="/cart/"></a>Cart</li>
+                    <!-- <li><a class="nav-link" href="">{{user.username}}</a></li> -->
+                </ul>
+            </ul>
+        </div>
+    </div>
+
+    {% block content %}
+
+    {% endblock%}
+
+</body>
+
+</html>

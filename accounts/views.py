@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 import uuid
 from .models import NewUser
 from django.contrib.auth import authenticate, login, logout
@@ -37,7 +37,8 @@ def user_signin(request):
         print (user)
         if user is not None:
             login(request, user)
-            return HttpResponse("Signin Success")
+            # return HttpResponse("Signin Success")
+            return redirect('products')
         else:
             return render(request, 'accounts/signin.html')
     else:

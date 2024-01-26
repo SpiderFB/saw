@@ -21,19 +21,3 @@ product-list {
   display: inline;
   float: left;
 }
-
-.column {
-  float: left;
-  /* width: 100%; */
-  padding: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-/* Clear floats after image containers */
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}

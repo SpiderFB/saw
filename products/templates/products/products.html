@@ -20,11 +20,18 @@
     <div class="row"></div>
         {% for item in productdb_var %}
             <div class="column">
-                <a href="/productdetails/{{ item.product_uuid }}">
+                <a href="/productsdetail/{{ item.product_uuid }}/">
                 <img src="{% get_media_prefix %}{{ item.product_image }}" alt="{{ item.product_name }}" height="200px" width="200px">
                 <h3>{{ item.product_name }} <h3>
-                <h4>{{ item.product_price }} rs</h4>
                 </a>
+                <h4>{{ item.product_price }} rs</h4>
+                <button>Add to Cart</button>
+                <button>Favourite</button>
+                {% if user.is_authenticated %}
+                    {% if perms.admin %}
+                        <button>Edit</button>
+                    {% endif %}
+                {% endif %}
             </div>
         {% endfor %}
     </div>

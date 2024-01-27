@@ -12,7 +12,7 @@
 </head>
 <body>
     
-    <h1>Banner</h1>
+    <!-- <h1>Banner</h1> -->
     <div class="banner" id="banner" data-interval="3000">
         {% for img in images %}
             <img data-slide-index="{{ forloop.parentloop.counter0 }}" src="{% static 'images/banner/'|add:img %}" alt="{{ img }}" height="300px">
@@ -31,7 +31,9 @@
                 <button>Favourite</button>
                 {% if user.is_authenticated %}
                     {% if perms.admin %}
-                        <button>Edit</button>
+                    <a href="/editproducts/{{ item.product_uuid }}/"><button>Edit</button></a>
+                    <a href="/deleteproducts/{{ item.product_uuid }}/"><button>Delete</button></a>
+                        
                     {% endif %}
                 {% endif %}
             </div>

@@ -4,8 +4,8 @@
   margin: 0;
   padding: 0;
   font-family: 'Quicksand', sans-serif;
-  box-sizing: border-box;
-  background-color: rgb(46, 211, 112);
+  /* box-sizing: border-box; */
+  /* background-color: rgb(46, 211, 112); */
   /* font-weight: 600 */
 }
 .banner {

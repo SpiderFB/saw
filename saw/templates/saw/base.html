@@ -15,11 +15,11 @@
     <div class="ecomnav">
         <div class="nav-items">
             <ul>
-                <li><a href="">Home</a></li>
+                <li><a href="/products">Home</a></li>
                 <li><a href="/table/">Table data</a></li>
                 {% if user.is_authenticated %}
                 {% if perms.admin %}
-                <li><a href="/additem/">Add Items</a></li>
+                <li><a href="/addproducts/">Add Product</a></li>
                 {% endif %}
 
                 {% endif %}
@@ -29,7 +29,8 @@
                     {% if perms.admin %}
                     <a href="/admin/"><h3>Hello Admin,</h3> <i>{{user.email}}</i></a>
                     {% else %}
-                        <a href="#">Welcome, {{user.email}}</a>
+                        <!-- <a href="#">Welcome, {{user.email}}</a> -->
+                        <i>Welcome, {{user.email}}</i>
                     {% endif %}
                     <br>
                     <a href="/signout/" @click.prevent="logout">Signout</a>

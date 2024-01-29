@@ -1,0 +1,36 @@
+{% extends 'saw/base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}">
+</head>
+<body>
+
+    <h1>Cart Details</h1>
+
+    <p>Cart UUID: {{ carts.cart_uuid }}</p>
+    <p>Total Value: {{ carts.total_value }}</p>
+    <p>User : {{ carts.user_uuid }}</p>
+    <p>Total items: {{ carts.num_products }}</p>
+
+
+    <br>
+    <p>Product </p> 
+    {% for product in carts.cart_products.all %}
+    <p>{{ product.product_name }} - <i>{{ product.product_price }}</i> </p>
+    <br>
+    {% endfor %}
+
+
+
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>
+
+{% endblock %}

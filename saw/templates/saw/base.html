@@ -29,7 +29,6 @@
                     {% if perms.admin %}
                     <a href="/admin/"><h3>Hello Admin,</h3> <i>{{user.email}}</i></a>
                     {% else %}
-                        <!-- <a href="#">Welcome, {{user.email}}</a> -->
                         <i>Welcome, {{user.email}}</i>
                     {% endif %}
                     <br>
@@ -37,7 +36,7 @@
                     {% else %}
                     <li><a href="/signin/">Signin</a></li>
                     {% endif %}
-                    <li><a href="/cart/"></a>Cart</li>
+                    <li><a href="/cart/">Cart({{ carts.num_products }})</a></li>
                     <!-- <li><a class="nav-link" href="">{{user.username}}</a></li> -->
                 </ul>
             </ul>

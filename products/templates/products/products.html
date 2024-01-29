@@ -27,7 +27,7 @@
                 <h3>{{ item.product_name }} <h3>
                 </a>
                 <h4>{{ item.product_price }} rs</h4>
-                <button>Add to Cart</button>
+                <a href="/addtocart/{{ item.product_uuid }}/"><button>Add to Cart</button></a>
                 <button>Favourite</button>
                 {% if user.is_authenticated %}
                     {% if perms.admin %}

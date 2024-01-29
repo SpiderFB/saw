@@ -1,8 +1,36 @@
-def delete_products(request, product_uuid):
-    if request.user.is_superuser:
-        productdb_var = productdb.objects.get(product_uuid=product_uuid)
-        if request.method == 'GET':
-            productdb_var.delete
-            return redirect('products')
-    else:
-        return HttpResponse('Not Admin')
+          <!-- {% for cart in carts %}
+              <td colspan="4">
+                <h3>Products:</h3>
+                <ul>
+                  {% for cart_product in cart.cartproduct_set.all %}
+                    <li>{{ cart_product.product.name }} ({{ cart_product.quantity }})</li>
+                  {% empty %}
+                    <li>No products in this cart.</li>
+                  {% endfor %}
+                </ul>
+          {% endfor %} -->
+
+
+
+
+
+def add_to_cart(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    cart, created = Cart.objects.get_or_create(user_uuid=request.user)
+    cart.cart_products.add(product)
+    return redirect('cart_home')
+
+def remove_from_cart(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    cart, created = Cart.objects.get_or_create(user_uuid=request.user)
+    cart.cart_products.remove(product)
+    return redirect('cart_home')
+
+def update_cart(request, product_id, quantity):
+    product = get_object_or_404(Product, id=product_id)
+    cart, created = Cart.objects.get_or_create(user_uuid=request.user)
+    cart_product = cart.cart_products.filter(product=product).first()
+    if cart_product:
+        cart_product.quantity = quantity
+        cart_product.save()
+    return redirect('cart_home')

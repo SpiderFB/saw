@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
-import os
-from .models import Cart
-from accounts.models import NewUser
+from .models import Cart, CartItem
 from products.models import productdb
 from django.contrib.auth.decorators import login_required
+
+from cart import models
 
 # Create your views here.
 
@@ -19,18 +19,21 @@ def cart_home(request):
 
 @login_required
 def addtocart(request, product_uuid):
-    productdb_var = productdb.objects.get(product_uuid=product_uuid)
-    cart_var = Cart.objects.get(user_uuid=request.user)
-    print(productdb_var.product_name)
+    cart, created = Cart.objects.get_or_create(user_uuid=request.user)
+    product = get_object_or_404(productdb, product_uuid=product_uuid)
     
-    cart_var.total_value += productdb_var.product_price
-    cart_var.num_products += 1
-    cart_var.cart_products.add(productdb_var.product_uuid)
+    # Checking if the product is already in the cart
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+    print(cart_item)
+
+    # If the item is already in the cart, update the quantity
+    if not created:
+        cart_item.quantity += 1
+        cart_item.save()
+
+    # Update the total value and quantity of the cart
+    cart.save()
     
-    print(cart_var.total_value)
-    
-    cart_var.save()
-    
-    return redirect('products')
+    return redirect('cart')
 
 

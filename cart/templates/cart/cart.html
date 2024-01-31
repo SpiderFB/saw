@@ -22,7 +22,7 @@
 
     <br>
     <p>Product </p> 
-    {% for product in carts.cart_products.all %}
+    {% for product in carts.product.all %}
     <p>{{ product.product_name }} - <i>{{ product.product_price }}</i> </p>
     <br>
     {% endfor %}

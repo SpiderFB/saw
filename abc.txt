@@ -1,36 +1,5 @@
-          <!-- {% for cart in carts %}
-              <td colspan="4">
-                <h3>Products:</h3>
-                <ul>
-                  {% for cart_product in cart.cartproduct_set.all %}
-                    <li>{{ cart_product.product.name }} ({{ cart_product.quantity }})</li>
-                  {% empty %}
-                    <li>No products in this cart.</li>
-                  {% endfor %}
-                </ul>
-          {% endfor %} -->
-
-
-
-
-
-def add_to_cart(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
-    cart, created = Cart.objects.get_or_create(user_uuid=request.user)
-    cart.cart_products.add(product)
-    return redirect('cart_home')
-
-def remove_from_cart(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
-    cart, created = Cart.objects.get_or_create(user_uuid=request.user)
-    cart.cart_products.remove(product)
-    return redirect('cart_home')
-
-def update_cart(request, product_id, quantity):
-    product = get_object_or_404(Product, id=product_id)
-    cart, created = Cart.objects.get_or_create(user_uuid=request.user)
-    cart_product = cart.cart_products.filter(product=product).first()
-    if cart_product:
-        cart_product.quantity = quantity
-        cart_product.save()
-    return redirect('cart_home')
+def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.cart.num_products = self.cart.cartitem_set.aggregate(models.Sum('quantity'))['quantity__sum'] or 0
+        self.cart.total_value = self.cart.cartitem_set.aggregate(models.Sum(models.F('quantity') * models.F('product__price')))['quantity__sum'] or 0
+        self.cart.save()

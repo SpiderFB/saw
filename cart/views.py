@@ -14,7 +14,11 @@ def cart_home(request):
     if created:
         cart_obj.save()
     print(cart_obj)
-    return render(request, 'cart/cart.html',{'carts': cart_obj})
+    
+    
+    cart_items = cart_obj.cartitem_set.all()
+    
+    return render(request, 'cart/cart.html',{'carts': cart_obj, 'cart_items': cart_items})
 
 
 @login_required

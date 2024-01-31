@@ -15,19 +15,40 @@
     <h1>Cart Details</h1>
 
     <p>Cart UUID: {{ carts.cart_uuid }}</p>
-    <p>Total Value: {{ carts.total_value }}</p>
+    <h2>Total Price: {{ carts.total_value }}</h2>
     <p>User : {{ carts.user_uuid }}</p>
     <p>Total items: {{ carts.num_products }}</p>
-
-
     <br>
-    <p>Product </p> 
-    {% for product in carts.product.all %}
-    <p>{{ product.product_name }} - <i>{{ product.product_price }}</i> </p>
+
+
+    <i>Products: </i>
     <br>
-    {% endfor %}
+    {% if cart_items %}
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th></th>
 
-
+        </tr>
+        {% for cart_item in cart_items %}
+        <tr>    
+            <td>{{ cart_item.product.product_name }}</td>
+            <td>{{ cart_item.quantity }}</td>
+            <td>{{ cart_item.product.product_price }}</td>
+            <td><img src="{% get_media_prefix %}{{ cart_item.product.product_image }}" alt="{{ cart_item.product.product_name }}" height="100px" width="100px"></td>
+            <td>
+                <a href=""><b>-1</b></a>
+                    Qty    
+                <a href="/addtocart/{{cart_item.product.product_uuid}}"><b>+1</b></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
 
     <script src="{% static 'js/app.js' %}"></script>
 </body>

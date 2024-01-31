@@ -40,4 +40,13 @@ def addtocart(request, product_uuid):
     
     return redirect('cart')
 
+def removefromcart(request, product_uuid):
 
+    cart= Cart.objects.get(user_uuid=request.user)
+    product = get_object_or_404(productdb, product_uuid=product_uuid)
+    cart_item= CartItem.objects.get(cart=cart, product=product)
+    cart_item.quantity -= 1
+    cart_item.save()
+    cart.save()
+    
+    return redirect('cart')

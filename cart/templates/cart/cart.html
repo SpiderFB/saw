@@ -40,9 +40,12 @@
             <td>{{ cart_item.product.product_price }}</td>
             <td><img src="{% get_media_prefix %}{{ cart_item.product.product_image }}" alt="{{ cart_item.product.product_name }}" height="100px" width="100px"></td>
             <td>
-                <a href="/removefromcart/{{cart_item.product.product_uuid}}"><b>-1</b></a>
+                <a href="/reducefromcart/{{cart_item.product.product_uuid}}"><b>-1</b></a>
                     Qty    
-                <a href="/addtocart/{{cart_item.product.product_uuid}}"><b>+1</b></a></td>
+                <a href="/addtocart/{{cart_item.product.product_uuid}}"><b>+1</b></a>
+                /
+                <a href="/deletefromcart/{{cart_item.product.product_uuid}}"><b>Delete</b></a>
+            </td>
         </tr>
         {% endfor %}
     </table>

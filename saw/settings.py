@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'products',
     'cart',
+    'checkout',
 ]
 
 AUTH_USER_MODEL = "accounts.NewUser"

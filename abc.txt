@@ -1,5 +1,2 @@
-def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        self.cart.num_products = self.cart.cartitem_set.aggregate(models.Sum('quantity'))['quantity__sum'] or 0
-        self.cart.total_value = self.cart.cartitem_set.aggregate(models.Sum(models.F('quantity') * models.F('product__price')))['quantity__sum'] or 0
-        self.cart.save()
+KEY ID    rzp_test_xNQuno8jmVzdoC
+KEY Secret      YKbGMXk0avmaRSVICO6zINWZ

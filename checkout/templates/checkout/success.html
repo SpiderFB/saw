@@ -6,7 +6,19 @@
     <title>Document</title>
 </head>
 <body>
-    {% csrf_token %}
     <h1>Yaah success</h1>
+
+
+
+    <h1>Razorpay Payment Success</h1>
+
+    <p>Razorpay Order ID: {{ razorpay_order_id }}</p>
+    <p>Razorpay payment ID:{{ razorpay_payment_id }}</p>
+    <p>Razorpay Signature: {{ razorpay_signature }}</p>
+
+
+    <p>Amount Paid: {{ amount_paid }}</p>
+    <p>Currency: {{ currency }}</p>
+    <p>Status: {{ status }}</p>
 </body>
 </html>

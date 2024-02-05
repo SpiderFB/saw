@@ -1,2 +1,4 @@
 KEY ID    rzp_test_xNQuno8jmVzdoC
 KEY Secret      YKbGMXk0avmaRSVICO6zINWZ
+
+CSRF_FAILURE_VIEW

@@ -3,5 +3,5 @@ from .import views
 
 urlpatterns = [
     path('checkout/', views.checkout_home, name='checkout'),
-    path('success/', views.checkout_success, name='checkoutsuccess'),
+    path('verify/', views.checkout_verify, name='checkoutsuccess'),
 ]

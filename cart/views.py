@@ -8,36 +8,41 @@ from cart import models
 
 
 def cart_home(request):
-    print(request.user)
-    cart_obj, created = Cart.objects.get_or_create(user_uuid=request.user, defaults={'total_value': 0, 'num_products': 0})
-    if created:
-        cart_obj.save()
-    print(cart_obj)
-    
-    
-    cart_items = cart_obj.cartitem_set.all()
-    
-    return render(request, 'cart/cart.html',{'carts': cart_obj, 'cart_items': cart_items})
+    if request.user.is_authenticated:
+        print(request.user)
+        cart_obj, created = Cart.objects.get_or_create(user_uuid=request.user, defaults={'total_value': 0, 'num_products': 0})
+        if created:
+            cart_obj.save()
+        print(cart_obj)
+        
+        
+        cart_items = cart_obj.cartitem_set.all()
+        
+        return render(request, 'cart/cart.html',{'carts': cart_obj, 'cart_items': cart_items})
+    else:
+        return redirect('signin')
 
 
-@login_required
 def addtocart(request, product_uuid):
-    cart, created = Cart.objects.get_or_create(user_uuid=request.user)
-    product = get_object_or_404(productdb, product_uuid=product_uuid)
-    
-    # Checking if the product is already in the cart
-    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
-    print(cart_item)
+    if request.user.is_authenticated:
+        cart, created = Cart.objects.get_or_create(user_uuid=request.user)
+        product = get_object_or_404(productdb, product_uuid=product_uuid)
+        
+        # Checking if the product is already in the cart
+        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+        print(cart_item)
 
-    # If the item is already in the cart, update the quantity
-    if not created:
-        cart_item.quantity += 1
-        cart_item.save()
+        # If the item is already in the cart, update the quantity
+        if not created:
+            cart_item.quantity += 1
+            cart_item.save()
 
-    # Update the total value and quantity of the cart
-    cart.save()
-    
-    return redirect('cart')
+        # Update the total value and quantity of the cart
+        cart.save()
+        
+        return redirect('cart')
+    else:
+        return render(request, 'accounts/signin.html')
 
 def reducefromcart(request, product_uuid):
 

@@ -1,4 +1,6 @@
+{% extends 'saw/base.html' %}
 {% load static %}
+{% block content %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,12 +21,12 @@
 
     <br>
 
-    <a class="" href="/signin/">SignIN</a>
-    <a class="" href="/signup/">SignUP</a>
 
-    {% block content %}
-    
-    {% endblock%}
+
+    <button><a class="" href="/signin/">SignIN</a></button>
+    <button><a class="" href="/signup/">SignUP</a></button>
 
 </body>
 </html>
+
+{% endblock %}

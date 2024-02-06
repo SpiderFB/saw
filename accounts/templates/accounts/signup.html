@@ -1,4 +1,4 @@
-{% extends 'accounts/accounts.html' %}
+{% extends 'saw/base.html' %}
 {% block content %}
 {% load static %}
 
@@ -8,10 +8,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/accounts.css' %}">
+
 </head>
 <body>
 
-<h2>SignUP</h2>
+<!-- <h2>SignUP</h2>
 <form method="POST" action="">
 
     {% csrf_token %}
@@ -27,8 +29,49 @@
     <button type="submit">Sign UP</button>
     
 </form>
+</body> -->
+
+
 
 <body>
+    <section>
+        <div class="signin">
+            <div class="content">
+                <h2>Sign UP</h2>
+                <form method="POST" action="" >
+                <div class="form">
+                
+                    {% csrf_token %}
+                    <div class="inputBox">
+                        <input type="text" id="email" name="email" required style="width: 300px;"> <i>Email</i>
+                    </div>
+                    <div class="inputBox">
+                        <input type="password" id="password" name="password" required style="width: 300px;"> <i>Password</i>
+                    </div>
+                    <div class="inputBox">
+                        <input type="password" id="phone" name="phone" required style="width: 300px;"> <i>Phone</i>
+                    </div>
+                    <div class="links"> <a href="#">Forgot Password</a> <a href="/signin/">SignIN</a>
+                    </div>
+                    <div class="inputBox">
+                        <input type="submit" value="Register">
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+
+
+
+
+
+
+
+
+
+
 <html>
 
 {% endblock %}

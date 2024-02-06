@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from .models import Cart, CartItem
 from products.models import productdb
 from django.contrib.auth.decorators import login_required
-
 from cart import models
 
 # Create your views here.

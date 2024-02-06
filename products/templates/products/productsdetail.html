@@ -17,7 +17,7 @@
 
     <img src="{% get_media_prefix %}{{ single_product.product_image }}" alt="{{ single_product.product_name }}" height="350px" width="350px">
 
-    <button>Add to Cart</button>
+    <a href="/addtocart/{{ single_product.product_uuid }}/"><button>Add to Cart</button></a>
     <button>Favourite</button>
     {% if user.is_authenticated %}
     {% if perms.admin %}

@@ -6,79 +6,88 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <p>Your Razorpay ID <i>{{ payment.id }}</i></p>
+    <p>Your Razorpay ID :  <i>{{ payment.id }}</i></p>
     <i>Amount </i>{{ payment.amount }}
+    <br>
+
+    <p><label for="w3review">Select Address:</label></p>
+    <textarea id="w3review" name="w3review" rows="4"
+        cols="50"></textarea>
+    <br>
     <button id="rzp-button1">Pay</button>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
-        
-        
-    var options = {
-        "key": "rzp_test_YkLyjJgCoPN0hj",               
-        "amount": "{{payment.amount}}",                 
-        "currency": "INR",
-        "name": "SAW",                                  
-        "description": "Test Transaction",
-        "image": "https://example.com/your_logo",
-        "order_id": "{{payment.id}}",                   
-        "callback_url": "http://127.0.0.1:8000/verify/",
-        "prefill": {                                     
-            "name": "Gaurav Kumar",                     
-            "email": "gaurav.kumar@example.com",
-            "contact": "9000090000"                     
-        },
-        "notes": {
-            "address": "Razorpay Corporate Office"
-        },
-        "theme": {
-            "color": "#3399cc"
+
+
+        var options = {
+            "key": "rzp_test_YkLyjJgCoPN0hj",
+            "amount": "{{payment.amount}}",
+            "currency": "INR",
+            "name": "SAW",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": "{{payment.id}}",
+            "callback_url": "http://127.0.0.1:8000/verify/",
+            "prefill": {
+                "name": "Gaurav Kumar",
+                "email": "gaurav.kumar@example.com",
+                "contact": "9000090000"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.on('payment.failed', function (response) {
+            alert(response.error.code);
+            alert(response.error.description);
+            // alert(response.error.source);
+            // alert(response.error.step);
+            // alert(response.error.reason);
+            // alert(response.error.metadata.order_id);
+            // alert(response.error.metadata.payment_id);
+        });
+
+
+        //wont be visible on success as 
+        rzp1.on('payment.success', function (response) {
+            alert('Payment successful!');
+            alert('Order ID: ' + response.id);
+            alert(response.id);
+            alert(response.entity);
+            alert(response.amount);
+            alert(response.amount_paid);
+            alert(response.amount_due);
+            alert(response.currency);
+            alert(response.receipt);
+            alert(response.offer_id);
+            alert(response.status);
+            alert(response.attempts);
+            alert(response.notes);
+            alert(response.created_at);
+        });
+
+
+        document.getElementById('rzp-button1').onclick = function (e) {
+            e.preventDefault();
+            rzp1.open();
+
         }
-    };
-    var rzp1 = new Razorpay(options);
-    rzp1.on('payment.failed', function (response){
-        alert(response.error.code);
-        alert(response.error.description);
-        // alert(response.error.source);
-        // alert(response.error.step);
-        // alert(response.error.reason);
-        // alert(response.error.metadata.order_id);
-        // alert(response.error.metadata.payment_id);
-    });
-
-
-    //wont be visible on success as 
-    rzp1.on('payment.success', function(response) {
-        alert('Payment successful!');
-        alert('Order ID: ' + response.id);
-        alert(response.id);
-        alert(response.entity);
-        alert(response.amount);
-        alert(response.amount_paid);
-        alert(response.amount_due);
-        alert(response.currency);
-        alert(response.receipt);
-        alert(response.offer_id);
-        alert(response.status);
-        alert(response.attempts);
-        alert(response.notes);
-        alert(response.created_at);
-    });
-
-    
-    document.getElementById('rzp-button1').onclick = function(e){
-        e.preventDefault();
-        rzp1.open();
-        
-    }
     </script>
     <script src="{% static 'js/app.js' %}"></script>
 </body>
+
 </html>
 
 

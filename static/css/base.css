@@ -6,6 +6,9 @@
   font-family: 'Quicksand', sans-serif;
   box-sizing: border-box;
   font-weight: 600;
+  a {
+    text-decoration: none;
+  }
 }
 ecomnav, .nav-items ul {
   display: flex;

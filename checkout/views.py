@@ -28,7 +28,10 @@ def checkout_home(request):
     else:
 
         # Create a new checkout for the user
-        checkout = Checkout.objects.create(user_uuid=user)
+        if Checkout.objects.filter(user_uuid=user).last():
+            checkout = Checkout.objects.filter(user_uuid=user).last()
+        else:
+            checkout = Checkout.objects.create(user_uuid=user)
 
         # Copy cart items to checkout items
         for cart_item in cart_obj.cartitem_set.all():
@@ -116,7 +119,7 @@ def checkout_success(request, razorpay_order_id, razorpay_payment_id):
     checkout_obj.razorpay_payment_id = razorpay_payment_id
     checkout_obj.save()
     
-    
+    Checkout.objects.create(user_uuid=request.user)
      
      
      

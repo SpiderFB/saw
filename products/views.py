@@ -1,18 +1,19 @@
 from django.shortcuts import render, redirect, HttpResponse
 import os
+from cart.models import Cart
 from .models import productdb
 from .forms import ProductForm
 
 # Create your views here.
 def products_home(request):
-    
+    cart_obj = Cart.objects.get(user_uuid=request.user)
     productdb_var = productdb.objects.all()
     
     image_files = []
     for filename in os.listdir('static/images/banner'):
         image_files.append(filename)
     
-    return render(request, 'products/products.html', {'productdb_var': productdb_var, 'images': image_files})
+    return render(request, 'products/products.html', {'productdb_var': productdb_var, 'images': image_files, 'carts': cart_obj})
 
 def products_detail(request, pk):
     productdb_var = productdb.objects.get(product_uuid=pk)

@@ -9,6 +9,8 @@ class Checkout(models.Model):
     user_uuid = models.ForeignKey(NewUser, on_delete=models.CASCADE)
     total_price =  models.DecimalField(max_digits=10, decimal_places=2, default=0)
     num_products = models.PositiveIntegerField(default=0)
+    razorpay_order_id = models.CharField(blank= True, default=0, max_length = 20)
+    razorpay_payment_id = models.CharField(blank= True, default=0, max_length = 20)
     
     def __str__(self):
         return f"{self.checkout_uuid}"

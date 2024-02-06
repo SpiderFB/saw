@@ -2,3 +2,19 @@ KEY ID    rzp_test_xNQuno8jmVzdoC
 KEY Secret      YKbGMXk0avmaRSVICO6zINWZ
 
 CSRF_FAILURE_VIEW
+
+
+
+error[code]	
+'BAD_REQUEST_ERROR'
+error[description]	
+("Your payment didn't go through as it was declined by the bank. Try another "
+ 'payment method or contact your bank.')
+error[source]	
+'bank'
+error[step]	
+'payment_authorization'
+error[reason]	
+'payment_failed'
+error[metadata]	
+'{"payment_id":"pay_NXTTqZxR87hzce","order_id":"order_NXTTVZ3dhbEGnU"}'

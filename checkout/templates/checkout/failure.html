@@ -13,15 +13,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Razorpay Payment Success</h1>
+    <h1>Checkout Failed</h1>
 
-    <p>Razorpay Order ID: {{ razorpay_order_id }}</p>
-    <p>Razorpay payment ID:{{ razorpay_payment_id }}</p>
+    <p>Razorpay Error code: {{ razorpay_error_code }}</p>
+    <p>Razorpay Error description:{{ razorpay_error_description }}</p>
 
-    <br>
+    <a href="/checkout"><button>Try again</button></a>
 
-    <!-- <p>SAW order ID:{{ saw_order_id }}</p> -->
-    <i>Your order will be shipped  within 24 hours.</i>
 </body>
 </html>
 

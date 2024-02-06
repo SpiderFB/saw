@@ -1,3 +1,9 @@
+{% extends 'saw/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,14 +12,11 @@
     <title>Document</title>
 </head>
 <body>
-    <i>abc</i>
-    {{ payment.amount }}
-    {{ payment.id }}
+    <p>Your Razorpay ID <i>{{ payment.id }}</i></p>
+    <i>Amount </i>{{ payment.amount }}
     <button id="rzp-button1">Pay</button>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
-        // alert( "{{payment.id}}" );
-        // var abc = {{ payment|safe }};
         
         
     var options = {
@@ -41,17 +44,43 @@
     rzp1.on('payment.failed', function (response){
         alert(response.error.code);
         alert(response.error.description);
-        alert(response.error.source);
-        alert(response.error.step);
-        alert(response.error.reason);
-        alert(response.error.metadata.order_id);
-        alert(response.error.metadata.payment_id);
+        // alert(response.error.source);
+        // alert(response.error.step);
+        // alert(response.error.reason);
+        // alert(response.error.metadata.order_id);
+        // alert(response.error.metadata.payment_id);
     });
+
+
+    //wont be visible on success as 
+    rzp1.on('payment.success', function(response) {
+        alert('Payment successful!');
+        alert('Order ID: ' + response.id);
+        alert(response.id);
+        alert(response.entity);
+        alert(response.amount);
+        alert(response.amount_paid);
+        alert(response.amount_due);
+        alert(response.currency);
+        alert(response.receipt);
+        alert(response.offer_id);
+        alert(response.status);
+        alert(response.attempts);
+        alert(response.notes);
+        alert(response.created_at);
+    });
+
     
     document.getElementById('rzp-button1').onclick = function(e){
-        rzp1.open();
         e.preventDefault();
+        rzp1.open();
+        
     }
     </script>
+    <script src="{% static 'js/app.js' %}"></script>
 </body>
 </html>
+
+
+
+{% endblock %}

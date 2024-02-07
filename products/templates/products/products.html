@@ -19,16 +19,20 @@
         {% endfor %}
     </div>
 
-    <div class="row"></div>
-        {% for item in productdb_var %}
+    {% for item in productdb_var %}
+    <div class="card">
+        
             <div class="item">
                 <a href="/productsdetail/{{ item.product_uuid }}/">
                 <img src="{% get_media_prefix %}{{ item.product_image }}" alt="{{ item.product_name }}" height="200px" width="200px">
-                <h3>{{ item.product_name }} <h3>
+                <h4>{{ item.product_name }} <h4>
                 </a>
-                <h4>{{ item.product_price }} rs</h4>
+                <i>{{ item.product_price }} rs</i>
+                <br>
                 <a href="/addtocart/{{ item.product_uuid }}/"><button>Add to Cart</button></a>
-                <button>Favourite</button>
+                <button>Fav</button>
+                <!-- <input type="radio"  value="F" unchecked /> -->
+                
                 {% if user.is_authenticated %}
                     {% if perms.admin %}
                     <a href="/editproducts/{{ item.product_uuid }}/"><button>Edit</button></a>
@@ -37,8 +41,9 @@
                     {% endif %}
                 {% endif %}
             </div>
-        {% endfor %}
+        
     </div>
+    {% endfor %}
     
     <script src="{% static 'js/app.js' %}"></script>
 </body>

@@ -8,10 +8,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/accounts.css' %}">
 </head>
 <body>
-    <h1>Wellcome to Accounts</h1>
+    
 
     {% if user.is_authenticated %}
         <a href="/admin/">Welcome, {{user.email}}</a>
@@ -21,10 +21,40 @@
 
     <br>
 
+    <section>
+        <div class="signin">
+            <div class="content">
+                <h2>Wellcome to SAW</h2>
+                <form method="POST" action="" >
+                <div class="form">
+                
+                    {% csrf_token %}
+
+                    <div class="inputBox">
+                        <a href="/signin/"><button type="button">SignIN</button></a>
+                        
+                    </div>
+                    <div class="inputBox">
+                        <a href="/signup/"><button type="button">SignUP</button></a>
+                    </div>
+                    <div class="links"> <a href="#">Forgot Password</a> <a href="#">About US</a>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
 
-    <button><a class="" href="/signin/">SignIN</a></button>
-    <button><a class="" href="/signup/">SignUP</a></button>
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

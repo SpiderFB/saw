@@ -17,12 +17,12 @@
 
     <img src="{% get_media_prefix %}{{ single_product.product_image }}" alt="{{ single_product.product_name }}" height="350px" width="350px">
 
-    <a href="/addtocart/{{ single_product.product_uuid }}/"><button>Add to Cart</button></a>
-    <button>Favourite</button>
+    <a href="/addtocart/{{ single_product.product_uuid }}/"><button class="pd">Add to Cart</button></a>
+    <button class="pd">Favourite</button>
     {% if user.is_authenticated %}
     {% if perms.admin %}
-    <a href="/editproducts/{{ single_product.product_uuid }}/"><button>Edit</button></a>
-    <button>Delete</button>
+    <a href="/editproducts/{{ single_product.product_uuid }}/"><button class="pd">Edit</button></a>
+    <button class="pd">Delete</button>
     {% endif %}
     {% endif %}
 

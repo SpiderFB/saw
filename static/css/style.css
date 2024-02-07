@@ -73,7 +73,7 @@ button {
   width: 100%;
   /* width: 100px; */
   padding: 10px 10px;
-  background: rgb(10, 124, 10);
+  background: rgb(103, 117, 121);
   border: none;
   outline: none;
   border-radius: 4px;
@@ -83,6 +83,10 @@ button {
   letter-spacing: 0.05em;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.pd{
+  width: auto;
 }
 
 button:hover {

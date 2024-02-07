@@ -27,3 +27,36 @@ td {
   height: 10px;
   width: 1%;
 }
+
+
+
+
+
+
+
+
+
+
+
+button {
+  position: relative;
+  width: auto;
+  padding: 10px 10px;
+  background: rgb(103, 117, 121);
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1em;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+button:hover {
+  background: #0f0;
+}
+
+button:active {
+  opacity: 0.6;
+}

@@ -35,7 +35,7 @@
                     <br>
                     <a href="/signout/" @click.prevent="logout">Signout</a>
                     {% else %}
-                    <li><a href="/signin/">Signin</a></li>
+                    <li><a href="/signin/"><button class="pd">Signin</button></a></li>
                     {% endif %}
                     <li><a href="/cart/">Cart  {{ carts.num_products }}</a></li>
                     <!-- <li><a class="nav-link" href="">{{user.username}}</a></li> -->

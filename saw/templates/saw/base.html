@@ -28,9 +28,9 @@
                 <ul>
                     {% if user.is_authenticated %}
                     {% if perms.admin %}
-                    <a href="/admin/"><h3>Hello Admin,</h3> <i>{{user.email}}</i></a>
+                    <a href="/admin/"><h3>Hello Admin,</h3></a> <a href="/profile/"><i>{{user.email}}</i></a>
                     {% else %}
-                        <i>Welcome, <a href="/accounts/">{{user.email}}</a></i>
+                        <i>Welcome, <a href="/profile/">{{user.email}}</a></i>
                     {% endif %}
                     <br>
                     <a href="/signout/" @click.prevent="logout">Signout</a>

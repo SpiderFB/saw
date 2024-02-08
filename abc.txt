@@ -18,3 +18,16 @@ error[reason]
 'payment_failed'
 error[metadata]	
 '{"payment_id":"pay_NXTTqZxR87hzce","order_id":"order_NXTTVZ3dhbEGnU"}'
+
+
+
+
+
+
+
+
+
+
+
+user = NewUser.objects.get(email='some_email')
+last_order = user.order_id.last()

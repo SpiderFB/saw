@@ -30,7 +30,7 @@
                 <i>{{ item.product_price }} rs</i>
                 <br>
                 <a href="/addtocart/{{ item.product_uuid }}/"><button>Add to Cart</button></a>
-                <button>Fav</button>
+                <a href="/fav/{{ item.product_uuid }}/"><button>Fav</button></a>
                 <!-- <input type="radio"  value="F" unchecked /> -->
                 
                 {% if user.is_authenticated %}

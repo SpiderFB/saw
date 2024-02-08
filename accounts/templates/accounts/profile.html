@@ -1,0 +1,31 @@
+{% extends 'saw/base.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>{{ user_obj.email }}</h2>
+    <br>
+
+    <p>Your Favourite products: </p>
+    {% for item in user_obj.fav_product.all %}
+        {{item}} <br />
+    {% endfor %}
+    <br>
+
+    <p>Your orders: </p>
+    {% for item in checkout_obj %}
+        {{item}} <br />
+    {% endfor %}
+    <br>
+    
+</body>
+</html>
+
+{% endblock %}

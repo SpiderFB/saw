@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from products.models import productdb
 
 # Create your models here.
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
@@ -21,10 +22,12 @@ class NewUserManager(BaseUserManager):
 
 class NewUser(AbstractBaseUser, PermissionsMixin):
     
+    user_uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
     email = models.EmailField('email address', unique=True)
     phone = models.IntegerField(blank = True, null = True)
-    user_uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
-    
+    age = models.IntegerField(blank = True, null = True)
+    # fav_product = models.ForeignKey(productdb, on_delete=models.CASCADE, blank=True, null=True)
+    fav_product = models.ManyToManyField(productdb, blank=True, null=True)
     
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=True)

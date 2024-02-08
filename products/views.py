@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 import os
 from cart.models import Cart
 from .models import productdb
 from .forms import ProductForm
+
 
 # Create your views here.
 def products_home(request):
@@ -66,6 +67,22 @@ def delete_products(request, product_uuid):
         return redirect('products')
     else:
         return HttpResponse('Not Admin')
+    
+def fav(request, product_uuid):
+    if request.user.is_authenticated:
+        product = get_object_or_404(productdb, product_uuid=product_uuid)
+        if product in request.user.fav_product.all():
+            # Product is already in fav_product set, so remove it
+            request.user.fav_product.remove(product)
+            request.user.save()
+            return HttpResponse("removed")
+        else:
+            # Product is not in fav_product set, so add it
+            request.user.fav_product.add(product)
+            request.user.save()
+            return HttpResponse("added")
+    else:
+        return redirect('accounts')
     
 
         
